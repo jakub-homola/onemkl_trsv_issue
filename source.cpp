@@ -220,6 +220,15 @@ int main(int argc, const char * * argv)
             q.wait();
             printf("  second trsv finished\n");
         }
+        else if(trsv_args_variant == 3)
+        {
+            printf("Calling just the second trsv without the first one\n");
+            printf("  submitting second trsv\n");
+            oneapi::mkl::sparse::trsv(q, oneapi::mkl::uplo::upper, oneapi::mkl::transpose::nontrans, oneapi::mkl::diag::nonunit, mkl_U, buf_y, buf_b_sub);
+            printf("  submitted second trsv\n");
+            q.wait();
+            printf("  second trsv finished\n");
+        }
         else
         {
             printf("Wrong variant number\n");
@@ -227,6 +236,8 @@ int main(int argc, const char * * argv)
 
         oneapi::mkl::sparse::release_matrix_handle(&mkl_U);
     }
+
+    printf("End of program, everything seems OK\n");
 
 
 

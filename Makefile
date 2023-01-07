@@ -15,6 +15,7 @@ run: compile
 	@echo "This fails:"   && ./program.x 1 0 || echo
 	@echo "This runs ok:" && ./program.x 1 1 && echo
 	@echo "This runs ok:" && ./program.x 1 2 && echo
+	@echo "This runs ok:" && ./program.x 1 3 && echo
 	@echo "This runs ok:" && ./program.x 0 0 && echo
 
 
