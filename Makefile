@@ -1,8 +1,8 @@
 
 .PHONY: compile clean run
 
-FLAGSMKL=-I"${MKLROOT}/include"
-LINKMKL=-L${MKLROOT}/lib/intel64 -lmkl_sycl -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lsycl -lOpenCL -lpthread -lm -ldl
+FLAGSMKL=-fsycl -DMKL_ILP64 -I"${MKLROOT}/include"
+LINKMKL=-L${MKLROOT}/lib/intel64 -lmkl_sycl -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -lsycl -lOpenCL -lpthread -lm -ldl
 
 
 
@@ -21,4 +21,4 @@ run: compile
 
 
 program.x: source.cpp Makefile
-	icpx -fsycl -g -O3 ${FLAGSMKL} $< -o $@ ${LINKMKL}
+	icpx -g -O3 ${FLAGSMKL} $< -o $@ ${LINKMKL}
